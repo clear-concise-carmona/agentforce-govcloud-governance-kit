@@ -4,6 +4,8 @@ Templates and checklists for deploying **Agentforce** inside **Salesforce Govern
 
 **Sources verified as of September 14, 2026.** See [VERIFICATION.md](VERIFICATION.md) for the full claims table with citations.
 
+**Part of a five-repo Government Cloud tool set from Clear Concise Consulting.** Browse the full source index and the other tools at [awesome-salesforce-government-cloud](https://github.com/clear-concise-carmona/awesome-salesforce-government-cloud).
+
 ## 1. Disclaimer
 
 This repo is independent work by [Clear Concise Consulting](https://www.clearconciseconsulting.com), not officially affiliated with, certified by, or endorsed by Salesforce, Inc.
