@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Agentforce Agent User Permission Set Template
+  Repo: agentforce-govcloud-governance-kit (Clear Concise Consulting)
+
+  WHAT THIS IS: a starting-point permission set for a Salesforce Agentforce
+  agent's integration/run-as user in a Government Cloud Plus org. It is a
+  TEMPLATE, not a finished artifact. Every object/field permission below is
+  a placeholder you replace with your agent's actual scope.
+
+  WHY A PERMISSION SET AND NOT A PROFILE: the design principle here is least
+  privilege with no profile inheritance. A dedicated permission set (assigned
+  to a dedicated integration user with a minimal base profile, e.g. a
+  "Minimum Access" profile) means the agent's access is fully enumerated in
+  one file instead of inherited implicitly from a shared profile. If you
+  can't explain why the agent needs a permission, it doesn't get the
+  permission.
+
+  THIS FILE DOES NOT DEPLOY ANYTHING BY ITSELF. It is a template to review,
+  edit for your org's actual objects/fields, and deploy through your own
+  org's normal change process after ISSO review (see
+  docs/isso-acceptance-memo-template.md). This repo does not deploy metadata
+  for you and never installs into a Salesforce org — see README "What this
+  repo does not do."
+
+  SYNTHETIC — every object, field, and API name below is a placeholder.
+  Delete or replace every block that doesn't apply to your agent.
+-->
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Agentforce Agent - [Agent Name] - Least Privilege</label>
+    <description>
+        Least-privilege access for the [Agent Name] Agentforce agent's
+        integration user. Scoped to only the objects, fields, and actions
+        this specific agent needs. No profile-inherited access. Reviewed
+        and accepted by ISSO on [date] — see isso-acceptance-memo-template.md.
+    </description>
+
+    <!--
+      OBJECT PERMISSIONS
+      List every object the agent's actions touch. Set only the CRUD flags
+      the agent actually needs (most agents should not have "modifyAllRecords"
+      or "viewAllRecords" — those bypass sharing rules). Repeat this block
+      per object.
+    -->
+    <objectPermissions>
+        <object>Case</object> <!-- SYNTHETIC placeholder object -->
+        <allowCreate>false</allowCreate>
+        <allowRead>true</allowRead>
+        <allowEdit>false</allowEdit>
+        <allowDelete>false</allowDelete>
+        <modifyAllRecords>false</modifyAllRecords>
+        <viewAllRecords>false</viewAllRecords>
+    </objectPermissions>
+
+    <!--
+      FIELD-LEVEL SECURITY
+      One block per field the agent can read or write. This is the section
+      to cross-check against docs/field-access-worksheet.md /
+      scripts/field_access_report.py — every field listed here should have
+      a corresponding row in that worksheet with its Data Sensitivity Level
+      and Compliance Categorization noted, or a documented reason the
+      classification wasn't available.
+    -->
+    <fieldPermissions>
+        <field>Case.Status</field> <!-- SYNTHETIC placeholder field -->
+        <readable>true</readable>
+        <editable>false</editable>
+    </fieldPermissions>
+
+    <!--
+      APEX CLASS ACCESS (only if the agent's actions call Apex)
+      List every Apex class the agent's actions invoke. Do not grant
+      "Author Apex" or broad Apex access to an agent's integration user.
+    -->
+    <classAccesses>
+        <apexClass>ExampleAgentActionHandler</apexClass> <!-- SYNTHETIC placeholder -->
+        <enabled>true</enabled>
+    </classAccesses>
+
+    <!--
+      SYSTEM PERMISSIONS
+      Leave everything else false. An agent integration user should not
+      have setup access, API-only-adjacent broad permissions, or admin
+      permissions. If a permission below is true, write down why in
+      the acceptance memo.
+    -->
+    <userPermissions>
+        <name>ApiEnabled</name>
+        <enabled>true</enabled>
+    </userPermissions>
+
+    <!--
+      NOT INCLUDED ON PURPOSE (do not add unless you have a documented,
+      ISSO-reviewed reason):
+      - ModifyAllData / ViewAllData
+      - Author Apex
+      - Manage Users
+      - Customize Application
+      - Any "Modify Metadata" permission
+    -->
+</PermissionSet>
